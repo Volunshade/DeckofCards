@@ -10,17 +10,17 @@ class Suit:
 
         self.name = name
         self.symbol = symbol
-        self.color = self.get_color()
 
-    def get_color(self) -> str:
+    @property
+    def color(self) -> str:
         """Determine the color of a suit."""
 
         color = None
 
         if self.name in ["heart", "diamond"]
-            color = red
+            color = "red"
         elif self.name in ["club", "spade"]
-            color = black
+            color = "black"
         else:
             raise Exception("Invalid suit name.")
 
@@ -30,11 +30,11 @@ class Suit:
 class Card:
     """Representation of a card."""
 
-    def __init__(self, value: str, name: str, suit: Suit):
+    def __init__(self, name: str, value: str, suit: Suit):
         """Create a new instance."""
 
-        self.value = value
         self.name = name
+        self.value = value
         self.suit = suit
   
 
@@ -46,15 +46,16 @@ class Deck:
 
         self.cardlist = []
 
+        cards = ["ace", 2, 3, 4, 5, 6, 7, 8, 9, 10, "jack", "queen", "king"]
+        suits = ["heart", "diamond", "spade", "club"]
+        for card in self.cards:
+            for suit in self.suits:
+                self.cardlist.append(Card(value,suit))
 
-        pass
-
-    def shuffle_deck(self):
+    def shuffle(self):
         """Shuffles the deck of cards."""
 
-        self.shuffled_deck = random.shuffle()
-
-        pass
+        self.shuffled = random.shuffle()
 
     def deal_card(self):
         """Deal a card from the deck."""
@@ -63,7 +64,7 @@ class Deck:
 
 
 def main():
-    """This will shuffle and deal a card from the deck"""
+    """This will shuffle and deal a card from the deck."""
 
     pass
 
