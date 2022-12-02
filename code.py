@@ -1,36 +1,7 @@
 """This module is for a deck of cards."""
 import random
 
-
-class Suit:
-    """Representation of a cards suit."""
-
-    def __init__(self, name: str, symbol: str) -> None:
-        """Create a new instance."""
-
-        self.name = name
-        self.symbol = symbol
-
-    def __str__(self) -> str:
-        """String representation of a suit."""
-
-        return f"Suit(name={self.name}, symbol={self.symbol})"
-
-    @property
-    def color(self) -> str:
-        """Determine the color of a suit."""
-
-        color = None
-
-        if self.name in ["heart", "diamond"]:
-            color = "red"
-        elif self.name in ["club", "spade"]:
-            color = "black"
-        else:
-            raise Exception("Invalid suit name.")
-
-        return color
-
+from suits import Suit, Suits
 
 class Card:
     """Representation of a card."""
@@ -56,14 +27,7 @@ class Deck:
 
         self.cards = []
 
-        suits = [
-            ("heart", u"\u2665"),
-            ("spade", u"\u2660"),
-            ("club", u"\u2663"),
-            ("diamond", u"\u2666")
-        ]
-        for _suit in suits:
-            suit = Suit(*_suit)
+        for suit in Suits():
             cards = [
                 ("ace", 1, suit),
                 ("two", 2, suit),
@@ -82,6 +46,7 @@ class Deck:
             for _card in cards:
                 card = Card(*_card)
                 self.cards.append(card)
+
     def shuffle(self):
         """Shuffles the deck of cards."""
 
